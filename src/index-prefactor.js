@@ -1,18 +1,61 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './Home';
-import About from './About';
-import Login from './Login';
-import Navbar from './Navbar';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // This file has been refactored
 // For all notes up to this point see index-prefactor.js
+
+const link = {
+  textDecoration: "none",
+  fontWeight: "bold"
+} // object w/styling elements
+
+const NavBar = () => {
+  <div>
+    <NavLink to="/" exact style={link}>Home</NavLink>
+    {/* referring to the styling immediately above, can also add activeStyle={{color: "darkblue"}} for... some reason? */}
+    <NavLink to="/about" exact style={link}>About</NavLink>
+    <NavLink to="/login" exact style={link}>Log In</NavLink>
+  </div>
+} // functional component providing navigation
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Home!</h1>
+    </div>
+  );
+};
+
+const About = () => {
+  return (
+    <div>
+      <h1>This is the About component.</h1>
+    </div>
+  );
+};
+
+const Login = () => {
+  return(
+    <div>
+      <form>
+        <div> {/* Some styling goes here HAH I FIGURED OUT HOW TO COMMENT */}
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" placeholder="Username" />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+  )
+}
 
 ReactDOM.render(
   // NEW HOTNESS:
   <Router> 
     <div>
-    <Navbar />
     <Route exact path="/" component={Home} />  
     {/* If you want the full HTML/JSX of the Home component to render all the time, as in a header,
     you want <Route path="/" component={Home} />
